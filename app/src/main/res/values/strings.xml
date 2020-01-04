@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">2.5</string>
+    <string name="info">Info</string>
+    <string name="button">Button</string>
+    <string name="Error">Error!</string>
+    <string name="Result">Result</string>
 </resources>

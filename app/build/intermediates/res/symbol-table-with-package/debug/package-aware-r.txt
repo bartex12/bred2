@@ -778,6 +778,7 @@ id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id text
+id text1
 id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
@@ -879,6 +880,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string app_name
+string info
 string search_menu_title
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat
