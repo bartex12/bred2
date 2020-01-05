@@ -9,26 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.example.gregory.arch_demo.R;
-
 import java.io.IOException;
 import java.util.Locale;
-
-import ru.geekbrains.android.arch.mvp.model.data.LaunchDataSource;
-import ru.geekbrains.android.arch.mvp.model.data.LaunchRemoteDataSource;
-import ru.geekbrains.android.arch.mvp.model.data.UserDataSourceNoRx;
-import ru.geekbrains.android.arch.mvp.model.data.UserRemoteDataSourceNoRx;
-import ru.geekbrains.android.arch.mvp.model.data.UserRepositoryImplNoRx;
 import ru.geekbrains.android.arch.mvp.model.entities.User;
-import ru.geekbrains.android.arch.mvp.model.interactors.UserModelImplNoRx;
-import ru.geekbrains.android.arch.mvp.model.interactors.UserModelNoRx;
-import ru.geekbrains.android.arch.mvp.model.network.JsonPlaceHolderApiNoRx;
-import ru.geekbrains.android.arch.mvp.model.repositories.UserRepositoryNoFx;
-import ru.geekbrains.android.arch.mvp.presenter.UserActivityPresenterImplNoRx;
 import ru.geekbrains.android.arch.mvp.presenter.UserPresenterNoRx;
 import ru.geekbrains.android.arch.mvp.presenter.UserViewNoRx;
-
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class UserActivity extends AppCompatActivity implements UserViewNoRx {
@@ -48,7 +34,7 @@ public class UserActivity extends AppCompatActivity implements UserViewNoRx {
         setContentView(R.layout.activity_main);
 
         initViews();
-        
+
         // извлекаем number, чтобы в onStop() записать правильное значение
         SharedPreferences prefSetting = getDefaultSharedPreferences(this);
         number = prefSetting.getInt(NUMBER_OF_LAUNCH,1);
@@ -116,7 +102,6 @@ public class UserActivity extends AppCompatActivity implements UserViewNoRx {
         //
         progressBar.setVisibility(View.GONE);
     }
-
     /**
      * здесь презентер не знает, каким образом View будет отображать данные
      * но можно сделать более подробные методы, например showUserName()
@@ -148,5 +133,4 @@ public class UserActivity extends AppCompatActivity implements UserViewNoRx {
         Log.i(TAG, "UserActivity  showNo");
         textView1.setText("*****");
     }
-
 }
