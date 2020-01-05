@@ -38,6 +38,7 @@ public class UserActivity extends AppCompatActivity implements UserViewNoRx {
     private ProgressBar progressBar;
     private TextView textView;
     private TextView textView1;
+    private Button button;
     private int number =1;
     public static final String NUMBER_OF_LAUNCH = "NUMBER_OF_LAUNCH";
 
@@ -46,7 +47,19 @@ public class UserActivity extends AppCompatActivity implements UserViewNoRx {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
+        initViews();
+        
+        // извлекаем number, чтобы в onStop() записать правильное значение
+        SharedPreferences prefSetting = getDefaultSharedPreferences(this);
+        number = prefSetting.getInt(NUMBER_OF_LAUNCH,1);
+
+        //класс для Создания презентера
+        UserActivityInjector injector = new UserActivityInjector();
+        injector.inject(this);
+    }
+
+    private void initViews() {
+        button = findViewById(R.id.button);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.text);
         textView1 = findViewById(R.id.text1);
@@ -58,24 +71,11 @@ public class UserActivity extends AppCompatActivity implements UserViewNoRx {
                 presenter.onUserAction();
             }
         });
-        // извлекаем number, чтобы в onStop() записать правильное значение
-        SharedPreferences prefSetting = getDefaultSharedPreferences(this);
-        number = prefSetting.getInt(NUMBER_OF_LAUNCH,1);
-
-        createPresenter();
     }
-    /**
-     * Создание презентера
-     * Можно вынести это в DI, фабрики и т.д.
-     */
-    private void createPresenter() {
 
-        JsonPlaceHolderApiNoRx jsonPlaceHolderApiNoRx = new JsonPlaceHolderApiNoRx();
-        UserDataSourceNoRx userDataSourceNoRx = new UserRemoteDataSourceNoRx(jsonPlaceHolderApiNoRx);
-        LaunchDataSource launchDataSource = new LaunchRemoteDataSource(this);
-        UserRepositoryNoFx userRepositoryNoFx = new UserRepositoryImplNoRx(userDataSourceNoRx,launchDataSource);
-        UserModelNoRx userInteractorNoRx = new UserModelImplNoRx(userRepositoryNoFx);
-        presenter = new UserActivityPresenterImplNoRx(this, userInteractorNoRx);
+    //метод для Создания презентера
+    public void setPresenter(UserPresenterNoRx presenter) {
+        this.presenter = presenter;
     }
 
     @Override

@@ -8,8 +8,7 @@ import ru.geekbrains.android.arch.mvp.model.data.models.ApiUser;
 
 public interface IUser {
 
-    //List<ApiUser> так как в ответе - массив, а не объект
+    //пришлось сделать List<ApiUser> так как в ответе - массив, а не объект
     @GET("users")
     Call<List<ApiUser>> getUsers();
-    //Observable<List<ApiUser>> getUsers();
 }
