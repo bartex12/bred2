@@ -25,6 +25,9 @@ public class UserRemoteDataSourceNoRx implements UserDataSourceNoRx {
     @Override
     public List<User> getUsers() {
         Log.i(TAG, "UserRemoteDataSourceNoRx List<User> getUsers()");
+        //TODO *************синхронизация нужна другая******************
+        //НО почему то не получается сделать без CountDownLatch, если использовать
+        //не execute(), а enqueue() в своём потоке и с обратным вызовом
         final CountDownLatch startSignal = new CountDownLatch(1);
         final List<User> users =  new ArrayList<>();
         new Thread(new Runnable() {
@@ -56,7 +59,6 @@ public class UserRemoteDataSourceNoRx implements UserDataSourceNoRx {
             }
         }).start();
         try {
-            //TODO *************синхронизация нужна другая******************
             //заставляем основной поток ждать, пока не закончит работу другой поток - startSignal.countDown();
             startSignal.await();
         } catch (InterruptedException e) {
