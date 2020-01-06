@@ -1,5 +1,5 @@
 package ru.geekbrains.android.arch.mvp.model.data;
 
-public interface LaunchDataSource {
+public interface LaunchDataSourceNoRx {
     boolean isLaunchMark();
 }

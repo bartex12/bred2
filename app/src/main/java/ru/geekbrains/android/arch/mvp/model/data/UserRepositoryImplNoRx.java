@@ -10,11 +10,11 @@ public class UserRepositoryImplNoRx implements UserRepositoryNoFx {
 
     //репозиторий получает данные из источника данных UserDataSource
     private final UserDataSourceNoRx userDataSourceNoRx;
-    private final LaunchDataSource launchDataSource;
+    private final LaunchDataSourceNoRx launchDataSourceNoRx;
 
-    public UserRepositoryImplNoRx(UserDataSourceNoRx userDataSourceNoRx, LaunchDataSource launchDataSource) {
+    public UserRepositoryImplNoRx(UserDataSourceNoRx userDataSourceNoRx, LaunchDataSourceNoRx launchDataSourceNoRx) {
         this.userDataSourceNoRx = userDataSourceNoRx;
-        this.launchDataSource = launchDataSource;
+        this.launchDataSourceNoRx = launchDataSourceNoRx;
     }
 
     @Override
@@ -27,6 +27,6 @@ public class UserRepositoryImplNoRx implements UserRepositoryNoFx {
     @Override
     public boolean isLaunchMark() {
         Log.i(TAG, "UserRepositoryImplNoRx  isLaunchMark");
-        return launchDataSource.isLaunchMark();
+        return launchDataSourceNoRx.isLaunchMark();
     }
 }

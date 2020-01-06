@@ -1,7 +1,7 @@
 package ru.geekbrains.android.arch.mvp.view;
 
-import ru.geekbrains.android.arch.mvp.model.data.LaunchDataSource;
-import ru.geekbrains.android.arch.mvp.model.data.LaunchRemoteDataSource;
+import ru.geekbrains.android.arch.mvp.model.data.LaunchDataSourceNoRx;
+import ru.geekbrains.android.arch.mvp.model.data.LaunchRemoteDataSourceNoRx;
 import ru.geekbrains.android.arch.mvp.model.data.UserDataSourceNoRx;
 import ru.geekbrains.android.arch.mvp.model.data.UserRemoteDataSourceNoRx;
 import ru.geekbrains.android.arch.mvp.model.data.UserRepositoryImplNoRx;
@@ -17,8 +17,8 @@ public class UserActivityInjector {
     public void inject(UserActivity userActivity){
         JsonPlaceHolderApiNoRx jsonPlaceHolderApiNoRx = new JsonPlaceHolderApiNoRx();
         UserDataSourceNoRx userDataSourceNoRx = new UserRemoteDataSourceNoRx(jsonPlaceHolderApiNoRx);
-        LaunchDataSource launchDataSource = new LaunchRemoteDataSource(userActivity);
-        UserRepositoryNoFx userRepositoryNoFx = new UserRepositoryImplNoRx(userDataSourceNoRx,launchDataSource);
+        LaunchDataSourceNoRx launchDataSourceNoRx = new LaunchRemoteDataSourceNoRx(userActivity);
+        UserRepositoryNoFx userRepositoryNoFx = new UserRepositoryImplNoRx(userDataSourceNoRx, launchDataSourceNoRx);
         UserModelNoRx userInteractorNoRx = new UserModelImplNoRx(userRepositoryNoFx);
         UserPresenterNoRx presenter = new UserActivityPresenterImplNoRx(userActivity, userInteractorNoRx);
 

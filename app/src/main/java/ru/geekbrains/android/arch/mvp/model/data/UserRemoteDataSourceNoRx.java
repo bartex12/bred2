@@ -10,7 +10,7 @@ import java.util.concurrent.CountDownLatch;
 import retrofit2.Response;
 import ru.geekbrains.android.arch.mvp.model.data.models.ApiUser;
 import ru.geekbrains.android.arch.mvp.model.entities.User;
-import ru.geekbrains.android.arch.mvp.model.network.IUser;
+import ru.geekbrains.android.arch.mvp.model.network.IUserNoRx;
 import ru.geekbrains.android.arch.mvp.model.network.JsonPlaceHolderApiNoRx;
 
 public class UserRemoteDataSourceNoRx implements UserDataSourceNoRx {
@@ -35,10 +35,10 @@ public class UserRemoteDataSourceNoRx implements UserDataSourceNoRx {
             public void run() {
                 try {
                     //создаём запрос с помощью ретрофита
-                    IUser iUser = jsonPlaceHolderApiNoRx.getIUser();
-                    Log.i(TAG, "UserRemoteDataSourceNoRx  iUser = " + iUser);
+                    IUserNoRx iUserNoRx = jsonPlaceHolderApiNoRx.getIUser();
+                    Log.i(TAG, "UserRemoteDataSourceNoRx  iUserNoRx = " + iUserNoRx);
                     //выполняем запрос @GET("users") к серверу
-                    Response<List<ApiUser>> response =iUser.getUsers().execute();
+                    Response<List<ApiUser>> response = iUserNoRx.getUsers().execute();
                     Log.i(TAG, "UserRemoteDataSourceNoRx  response = " + response);
                     //получаем модель данных как она есть на сервере
                     final List<ApiUser> apiUsers = response.body();

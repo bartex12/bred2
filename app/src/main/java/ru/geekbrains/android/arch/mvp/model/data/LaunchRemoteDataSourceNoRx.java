@@ -6,12 +6,12 @@ import android.util.Log;
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 //класс для определения того, нужно ли показывать надпись с предложением оценить приложение
-public class LaunchRemoteDataSource implements LaunchDataSource {
+public class LaunchRemoteDataSourceNoRx implements LaunchDataSourceNoRx {
     private static final String TAG = "33333";
     private Context context;
     private static final String NUMBER_OF_LAUNCH = "NUMBER_OF_LAUNCH";
 
-    public LaunchRemoteDataSource(Context context) {
+    public LaunchRemoteDataSourceNoRx(Context context) {
         this.context = context;
     }
 
@@ -20,7 +20,7 @@ public class LaunchRemoteDataSource implements LaunchDataSource {
 
         SharedPreferences prefSetting = getDefaultSharedPreferences(context);
         int number = prefSetting.getInt(NUMBER_OF_LAUNCH,1);
-        Log.d(TAG, "LaunchRemoteDataSource isLaunchMark number = " + number);
+        Log.d(TAG, "LaunchRemoteDataSourceNoRx isLaunchMark number = " + number);
         return number == 2 || ((number + 2) % 4 == 0);
     }
 }
